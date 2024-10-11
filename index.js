@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { configDotenv } from "dotenv";
 import authRouter from "./routes/authRoutes.js";
-import { registerValidator } from "./utils/validator.js";
+import adminRouter from "./routes/adminRoutes.js";
 
 configDotenv();
 mongoose.connect(process.env.DATABASE_URL);
@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // routes
 app.use("/api/v1/", authRouter);
+app.use("/api/v1/admin/", adminRouter);
 
 app.listen(process.env.PORT || 8000, () =>
   console.log("Server is runing on port:" + process.env.PORT)
