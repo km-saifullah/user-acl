@@ -79,4 +79,17 @@ const loginUser = async (req, res) => {
   }
 };
 
-export { userRegister, loginUser };
+const getProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const userData = await User.findById({ _id: userId });
+
+    return res
+      .status(200)
+      .json({ success: true, msg: "profile get successfully", data: userData });
+  } catch (error) {
+    return res.status(400).json({ success: false, msg: error.message });
+  }
+};
+
+export { userRegister, loginUser, getProfile };

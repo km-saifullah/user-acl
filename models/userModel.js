@@ -14,7 +14,7 @@ const userSchema = new Schema({
     required: true,
   },
   role: {
-    type: String,
+    type: Number,
     default: 0, // 0->user, 1->admin 2->subAdmin, 3->editor
   },
 });
