@@ -7,3 +7,10 @@ export const registerValidator = [
     .normalizeEmail({ gmail_remove_dots: true }),
   check("password", "password is required").not().isEmpty(),
 ];
+
+export const loginValidator = [
+  check("email", "email is required")
+    .isEmail()
+    .normalizeEmail({ gmail_remove_dots: true }),
+  check("password", "password is required").not().isEmpty(),
+];

@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use("/api/v1/", registerValidator, authRouter);
+app.use("/api/v1/", authRouter);
 
 app.listen(process.env.PORT || 8000, () =>
   console.log("Server is runing on port:" + process.env.PORT)
