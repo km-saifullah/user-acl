@@ -10,19 +10,32 @@ import addPermission, {
   updatePermission,
 } from "../controllers/admin/permissionController.js";
 import { verifyToken } from "../middlewares/authMiddleware.js";
+import { onlyAdminAccess } from "../middlewares/adminMiddleware.js";
 
 const router = Router();
 
 // permission routes
 router
   .route("/add-permission")
-  .post(verifyToken, adminValidator, addPermission);
-router.route("/get-permissions").get(verifyToken, getPermission);
+  .post(verifyToken, onlyAdminAccess, adminValidator, addPermission);
+router
+  .route("/get-permissions")
+  .get(verifyToken, onlyAdminAccess, getPermission);
 router
   .route("/delete-permission")
-  .post(verifyToken, permissionDeleteValidator, deletePermission);
+  .post(
+    verifyToken,
+    onlyAdminAccess,
+    permissionDeleteValidator,
+    deletePermission
+  );
 router
   .route("/update-permission")
-  .post(verifyToken, permissionUpdateValidator, updatePermission);
+  .post(
+    verifyToken,
+    onlyAdminAccess,
+    permissionUpdateValidator,
+    updatePermission
+  );
 
 export default router;
